@@ -8,14 +8,8 @@
 			"authenticationType": "xsuaa"
 		},
 		{
-			"source": "^/xsodata/(.*)",
-			"destination": "core_api",
-			"authenticationType": "xsuaa",
-			"scope" : "$XSAPPNAME.Display"
-		},
-		{
 			"source": "^/(.*)$",
-    		"localDir" : "resources"
+    			"localDir" : "resources"
 		}
 	]
 }
