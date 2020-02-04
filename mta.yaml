@@ -1,0 +1,29 @@
+ID: SecureUX
+_schema-version: '2.1'
+version: 0.0.1
+modules:
+  - name: ui
+    type: html5
+    path: ui
+    requires:
+      - name: uaa
+        group: destinations
+        properties:
+          forwardAuthToken: true
+          url: '~{url}'
+          name: api_api
+      - name: uaa
+
+  - name: js
+    type: nodejs
+    path: api
+    provides:
+     - name: js_api
+       properties:
+          url: ${default-url}
+
+resources:
+  - name: uaa
+    type: com.sap.xs.uaa
+    parameters:
+      service-name: secureux-uaa
