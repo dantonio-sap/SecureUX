@@ -3,10 +3,9 @@
 	"authenticationMethod": "route",
 	"routes": [
 		{
-			"source": "^/xsodata/(.*)",
+			"source": "^/(.*)(.xsjs)",
 			"destination": "core_api",
-			"authenticationType": "xsuaa",
-			"scope" : "$XSAPPNAME.Display"
+			"authenticationType": "xsuaa"
 		},
 		{
 			"source": "^/(.*)$",
