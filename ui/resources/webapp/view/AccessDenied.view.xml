@@ -1,0 +1,9 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:l="sap.ui.layout" 
+	controllerName="com.sap.secureux.ui.controller.AccessDenied">
+	<MessagePage
+		icon="sap-icon://locked"
+		showHeader="true"
+	    title="{i18n>AccessDenied.title}"
+	    text="{i18n>AccessDenied.text}"
+	    description="{i18n>AccessDenied.description}"/>
+</mvc:View>

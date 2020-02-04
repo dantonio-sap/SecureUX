@@ -83,6 +83,12 @@
 				"name": "RouteView1",
 				"pattern": "RouteView1",
 				"target": ["TargetView1"]
+			},{
+				"pattern": "accessdenied",
+				"name": "accessdenied",
+				"target": [
+					"AccessDenied"
+				]
 			}],
 			"targets": {
 				"TargetView1": {
@@ -90,6 +96,11 @@
 					"transition": "slide",
 					"clearAggregation": true,
 					"viewName": "View1"
+				},
+				"AccessDenied": {
+					"viewType": "XML",
+					"clearAggregation": true,
+					"viewName": "AccessDenied"
 				}
 			}
 		}
