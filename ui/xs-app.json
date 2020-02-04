@@ -9,7 +9,7 @@
 		},
 		{
 			"source": "^/(.*)$",
-    		"localDir" : "resources"
+    			"localDir" : "resources"
 		}
 	]
 }
