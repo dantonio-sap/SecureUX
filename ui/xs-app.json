@@ -3,11 +3,6 @@
 	"authenticationMethod": "route",
 	"routes": [
 		{
-			"source": "^/(.*)(.xsjs)",
-			"destination": "core_api",
-			"authenticationType": "xsuaa"
-		},
-		{
 			"source": "^/xsodata/(.*)",
 			"destination": "core_api",
 			"authenticationType": "xsuaa",
