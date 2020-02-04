@@ -3,7 +3,38 @@
 	<App id="idAppControl">
 		<pages>
 			<Page title="{i18n>title}">
-				<content></content>
+				<content>
+					<List
+						binding="{user>/userInfo}"
+						headerText="User Context" >
+						<DisplayListItem
+							label="logonName"
+							value="{user>logonName}" />
+						<DisplayListItem
+							label="givenName"
+							value="{user>givenName}" />
+						<DisplayListItem
+							label="familyName"
+							value="{user>familyName}" />
+						<DisplayListItem
+							label="email"
+							value="{user>email}" />
+					</List>
+					<List
+						items="{user>/scopes}"
+						headerText="Scopes" >
+						<DisplayListItem
+							label="scope"
+							value="{user>}" />
+					</List>
+					<List
+						items="{user>/userAttributes/region}" 
+						headerText="Attributes (region)">
+						<DisplayListItem
+							label="region"
+							value="{user>}" />
+					</List>
+				</content>
 			</Page>
 		</pages>
 	</App>

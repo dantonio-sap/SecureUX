@@ -6,24 +6,35 @@ modules:
     type: html5
     path: ui
     requires:
-      - name: uaa
+      - name: core_api
         group: destinations
         properties:
           forwardAuthToken: true
           url: '~{url}'
-          name: api_api
+          name: core_api
       - name: uaa
-
-  - name: js
+  - name: api
     type: nodejs
     path: api
     provides:
-     - name: js_api
-       properties:
-          url: ${default-url}
-
+      - name: core_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_db
+      - name: uaa
+      - name: db
+  - name: db
+    type: hdb
+    path: db
+    requires:
+      - name: hdi_db
 resources:
   - name: uaa
     type: com.sap.xs.uaa
     parameters:
       service-name: secureux-uaa
+  - name: hdi_db
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
