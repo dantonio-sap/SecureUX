@@ -9,6 +9,15 @@
 		},
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
+		"dataSources": {
+			"CustomerInfo": {
+				"uri": "/xsodata/CustomerInfo.xsodata/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
+		},
 		"sourceTemplate": {
 			"id": "hanatemplates.basicSAPUI5ApplicationProject",
 			"version": "0.0.0"
@@ -62,6 +71,15 @@
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
 					"bundleName": "com.sap.secureux.ui.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "CustomerInfo",
+				"preload": true,
+				"settings": {
+					"metadataUrlParams": {},
+					"defaultBindingMode": "TwoWay",
+					"defaultUpdateMethod": "PUT"
 				}
 			}
 		},

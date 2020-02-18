@@ -4,36 +4,84 @@
 		<pages>
 			<Page title="{i18n>title}">
 				<content>
-					<List
-						binding="{user>/userInfo}"
-						headerText="User Context" >
-						<DisplayListItem
-							label="logonName"
-							value="{user>logonName}" />
-						<DisplayListItem
-							label="givenName"
-							value="{user>givenName}" />
-						<DisplayListItem
-							label="familyName"
-							value="{user>familyName}" />
-						<DisplayListItem
-							label="email"
-							value="{user>email}" />
-					</List>
-					<List
-						items="{user>/scopes}"
-						headerText="Scopes" >
-						<DisplayListItem
-							label="scope"
-							value="{user>}" />
-					</List>
-					<List
-						items="{user>/userAttributes/region}" 
-						headerText="Attributes (region)">
-						<DisplayListItem
-							label="region"
-							value="{user>}" />
-					</List>
+					<IconTabBar
+						id="idIconTabBarNoIcons"
+						expanded="{device>/isNoPhone}"
+						class="sapUiResponsiveContentPadding">
+						<items>
+							<IconTabFilter
+								text="Customers">
+								<Table id="idCustomersTable" growing="true" growingThreshold="10" paste="onPaste"
+									items="{/Customers}">
+									<headerToolbar>
+										<OverflowToolbar id="otbSubheader">
+											<ToolbarSpacer />
+											<Button id="editButton" text="Edit" type="Transparent"
+												press="onEdit" visible="{= ${user>/scopes}.indexOf('SecureUX.Edit') > -1 ? true : false}"  />
+											<Button id="saveButton" text="Save" type="Transparent"
+												press="onSave" visible="false" />
+											<Button id="cancelButton" text="Cancel" type="Transparent"
+												press="onCancel" visible="false" />
+										</OverflowToolbar>
+									</headerToolbar>
+									<columns>
+										<Column >
+											<Text text="Customer" />
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+											<Text text="Region" />
+										</Column>
+										<Column hAlign="End">
+											<Text text="Created At" />
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<ObjectIdentifier title="{Name}" text="{ID}" />
+												<Text text="{Region}"></Text>
+												<Text text="{CreatedAt}"></Text>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</IconTabFilter>
+							<IconTabFilter
+								text="My User Info">
+								<List
+									binding="{user>/userInfo}"
+									headerText="User Context" >
+									<DisplayListItem
+										label="logonName"
+										value="{user>logonName}" />
+									<DisplayListItem
+										label="givenName"
+										value="{user>givenName}" />
+									<DisplayListItem
+										label="familyName"
+										value="{user>familyName}" />
+									<DisplayListItem
+										label="email"
+										value="{user>email}" />
+								</List>
+								<List
+									items="{user>/scopes}"
+									headerText="Scopes" >
+									<DisplayListItem
+										label="scope"
+										value="{user>}" />
+								</List>
+								<List
+									items="{user>/userAttributes/region}" 
+									headerText="Attributes (region)">
+									<DisplayListItem
+										label="region"
+										value="{user>}" />
+								</List>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+					
 				</content>
 			</Page>
 		</pages>

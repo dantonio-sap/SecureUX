@@ -8,6 +8,11 @@
 			"authenticationType": "xsuaa"
 		},
 		{
+			"source": "^/(.*)(.xsodata)",
+			"destination": "core_api",
+			"authenticationType": "xsuaa"
+		},
+		{
 			"source": "^/(.*)$",
     			"localDir" : "resources"
 		}

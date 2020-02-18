@@ -1,0 +1,31 @@
+{
+  "format_version": 1,
+  "imports": [
+    {
+      "target_table": "SecureUX.db::CustomerInfo.Customers",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "SecureUX.db::CustomerInfo.csv",
+        "has_header": true,
+        "type_config": {
+          "delimiter": ","
+        }
+      },
+      "import_settings": {
+        "import_columns": [
+          "ID",
+          "Name",
+          "Region",
+          "CreatedAt"
+        ],
+        "include_filter": []
+       },
+	   "column_mappings": {
+		"ID": "ID",
+		"Name": "Name",
+		"Region": "Region",
+		"CreatedAt": "CreatedAt"
+	   }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+namespace SecureUX.db;
+
+@OData.publish : true
+context CustomerInfo {
+
+    /*@@layout{"layoutInfo":{"x":-630,"y":-242.5}}*/
+    entity Customers {
+        key ID        : String(10);
+            Name      : String(100);
+            Region    : String(100);
+            CreatedAt : UTCDateTime;
+    };
+};

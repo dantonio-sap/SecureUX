@@ -8,6 +8,27 @@ sap.ui.define([
 	return Controller.extend("com.sap.secureux.ui.controller.App", {
 		onInit: function(){
 			this.getUserContext();
+			
+			this.oTable = this.byId("idCustomersTable");
+			this.oTable.attachEventOnce("updateFinished", function(oEvent){
+				this.oReadOnlyTemplate = this.byId("idCustomersTable").removeItem(0);
+				this.rebindTable(this.oReadOnlyTemplate, "Navigation");
+				this.oEditableTemplate = new sap.m.ColumnListItem({
+					cells: [
+						new sap.m.HBox({ items: [
+							new sap.m.Input({
+								value: "{Name}"
+							}), new sap.m.Input({
+								value: "{ID}"
+							}) ]
+						}), new sap.m.Input({
+							value: "{Region}"
+						}), new sap.m.Text({
+							text: "{CreatedAt}"
+						})
+					]
+				});
+			}, this);
 		},
 		
 		getUserContext: function(){
@@ -59,6 +80,47 @@ sap.ui.define([
 						this.getOwnerComponent().getRouter().navTo("accessdenied");
 					}
 			}
+		},
+		
+		rebindTable: function(oTemplate, sKeyboardMode) {
+			this.oTable.bindItems({
+				path: "/Customers",
+				template: oTemplate,
+				key: "ID"
+			}).setKeyboardMode(sKeyboardMode);
+		},
+
+		onEdit: function() {
+			this.aCustomerCollection = jQuery.extend(true, [], this.getView().getModel().getProperty("/Customers"));
+			this.byId("editButton").setVisible(false);
+			this.byId("saveButton").setVisible(true);
+			this.byId("cancelButton").setVisible(true);
+			this.rebindTable(this.oEditableTemplate, "Edit");
+		},
+
+		onSave: function() {
+			// Save Data
+			var oView = this.getView();
+			var oController = this;
+			this.getView().getModel().submitChanges({
+				success: function(oEvent){
+					// Change table back to read-only
+					oView.byId("saveButton").setVisible(false);
+					oView.byId("cancelButton").setVisible(false);
+					oView.byId("editButton").setVisible(true);
+					oController.rebindTable(oController.oReadOnlyTemplate, "Navigation");
+				}			
+			});
+			
+			
+		},
+
+		onCancel: function() {
+			this.byId("cancelButton").setVisible(false);
+			this.byId("saveButton").setVisible(false);
+			this.byId("editButton").setVisible(true);
+			this.getView().getModel().setProperty("/Customers", this.aCustomerCollection);
+			this.rebindTable(this.oReadOnlyTemplate, "Navigation");
 		}
 		
 	});
